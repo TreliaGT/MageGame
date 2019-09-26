@@ -20,11 +20,22 @@ public class PlayerController : MonoBehaviour
     float currentYrolation;
     Vector2 aimVector;
 
+
+    [Header("Casting")]
+    public float castrange = 300f;
+    public LayerMask castMask;
+    public float castrate = 0.25f;
+    public bool Casting = false;
+    public Transform Tip;
+    public GameObject CastEffectPrefab;
+    public GameObject CastLinePrefab;
+    public GameObject Wand;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-    
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -44,6 +55,10 @@ public class PlayerController : MonoBehaviour
         inputVector.z = Input.GetAxis("Vertical");
         aimVector.x = Input.GetAxis("Mouse X");
         aimVector.y = Input.GetAxis("Mouse Y");
+        if (Input.GetButtonDown("Fire1") && !Casting)
+        {
+            Shoot();
+        }
     }
 
 
@@ -64,4 +79,27 @@ public class PlayerController : MonoBehaviour
         currentYrolation = Mathf.Clamp(currentYrolation, minY, maxY);
         lookCamera.eulerAngles = new Vector3(-currentYrolation, lookCamera.eulerAngles.y, lookCamera.eulerAngles.z);
     }
+
+    void Shoot()
+    {
+        Instantiate(CastLinePrefab, Tip.position, Quaternion.identity, Tip).transform.forward = Tip.forward;
+        RaycastHit hit;
+        if (Physics.Raycast(lookCamera.position, lookCamera.forward, out hit, castrange, castMask))
+        {
+           //  print(hit.point);
+             print(hit.transform.gameObject.name);  
+
+           Instantiate(CastEffectPrefab, hit.point, Quaternion.identity).transform.forward = hit.transform.TransformDirection(hit.normal);
+        }
+        StartCoroutine(FireRoute());
+    }
+
+
+    IEnumerator FireRoute()
+    {
+        Casting = true;
+        yield return new WaitForSeconds(castrate);
+        Casting = false;
+    }
+
 }
