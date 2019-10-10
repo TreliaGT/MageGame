@@ -60,8 +60,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Controllers\PlayerController.cs" />
     <Compile Include="Assets\Scripts\DestoryInTime.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\PickUp.cs" />
+    <Compile Include="Assets\Scripts\PlayerManger.cs" />
     <None Include="Assets\Kenny\kenney_naturepackextended_updated\Tools\Three.js (Blender)\readme.txt" />
     <None Include="Assets\Kenny\kenney_naturepackextended_updated\License.txt" />
     <None Include="Assets\Kenny\kenney_particlePack\License.txt" />
