@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,11 @@ public class PlayerController : MonoBehaviour
     public int MaxMana = 20;
     public int CurrentMana = 20;
     public Text ManaText;
+
+    [Header("Enemy")]
     EnemyController enemy;
+    public float MaxDamage = 3f;
+    public float MinDamage = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -124,13 +129,16 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage()
     {
-        CurrentHealth = CurrentHealth - 3;
+        float Ran = UnityEngine.Random.Range(MinDamage, MaxDamage);
+        CurrentHealth = CurrentHealth - (int)Math.Round(Ran);
         HealthText.text = CurrentHealth.ToString() + "/" + MaxHealth.ToString() + " Health";
         if (CurrentHealth <= 0)
         {
             print("You dead");
         }
     }
+
+   
 
     IEnumerator FireRoute()
     {

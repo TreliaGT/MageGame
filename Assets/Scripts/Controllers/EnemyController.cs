@@ -10,12 +10,13 @@ public class EnemyController : MonoBehaviour
     Transform Target;
     NavMeshAgent agent;
     bool Damage = false;
-    public float DamageRate = 0.25f;
+    public float DamageRate = 1f;
 
     [Header("Health")]
     public int MaxHealth = 3;
     public int health = 3;
-
+    public GameObject DeathEffect;
+    public Transform Tip;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +35,12 @@ public class EnemyController : MonoBehaviour
 
             if (distance <= agent.stoppingDistance)
             {
-                //attack 
                 FaceTarget();
+                if (!Damage)
+                {
+                    Target.GetComponent<PlayerController>().TakeDamage();
+                    StartCoroutine(DamageRoutine());
+                }
             }
         }
     }
@@ -50,10 +55,11 @@ public class EnemyController : MonoBehaviour
 
     public void TakeHealth()
     {
-
         health = health - 1;
         if (health <= 0)
         {
+            Instantiate(DeathEffect, Tip.position, Quaternion.identity, Tip).transform.position = Tip.position;
+         
             Destroy(gameObject);
         }
     }
@@ -65,18 +71,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, lookradar);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!Damage)
-        {
-            if (other.tag == "Player")
-            {
-                other.GetComponent<PlayerController>().TakeDamage();
-                StartCoroutine(DamageRoutine());
-            }
-        }
-    }
-
+ 
     IEnumerator DamageRoutine()
     {
         Damage = true;
