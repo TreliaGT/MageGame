@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -18,11 +19,14 @@ public class EnemyController : MonoBehaviour
     public GameObject DeathEffect;
     public Transform Tip;
 
+    [Header("EnemyCount")]
+    public GameObject objectToAccess;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Target = PlayerManger.instance.Player.transform;
+     
     }
 
     // Update is called once per frame
@@ -58,12 +62,15 @@ public class EnemyController : MonoBehaviour
         health = health - 1;
         if (health <= 0)
         {
-            Instantiate(DeathEffect, Tip.position, Quaternion.identity, Tip).transform.position = Tip.position;
-         
+            PlayerController scriptToAccess = objectToAccess.GetComponent<PlayerController>();
+            scriptToAccess.Enemy();
+            Instantiate(DeathEffect, Tip.position, Quaternion.identity);
             Destroy(gameObject);
+
         }
     }
 
+  
 
     private void OnDrawGizmosSelected()
     {

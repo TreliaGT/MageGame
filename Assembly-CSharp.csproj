@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\DestoryInTime.cs" />
     <Compile Include="Assets\Scripts\PickUp.cs" />
     <Compile Include="Assets\Scripts\PlayerManger.cs" />
+    <Compile Include="Assets\Scripts\reloadLevel.cs" />
     <None Include="Assets\Kenny\kenney_naturepackextended_updated\Tools\Three.js (Blender)\readme.txt" />
     <None Include="Assets\Kenny\kenney_naturepackextended_updated\License.txt" />
     <None Include="Assets\Kenny\kenney_particlePack\License.txt" />

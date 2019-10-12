@@ -46,6 +46,18 @@ public class PlayerController : MonoBehaviour
     public float MaxDamage = 3f;
     public float MinDamage = 1f;
 
+    [Header("Died")]
+    public bool died = false;
+    public bool Endgame = false;
+    public GameObject DiedGui;
+    public GameObject WinGui;
+    public GameObject InGame;
+
+    [Header("EnemyCount")]
+    public Text Count;
+    public int MaxCount = 1;
+    public int EnemyCount = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,29 +66,39 @@ public class PlayerController : MonoBehaviour
         CurrentMana = MaxMana;
         ManaText.text = CurrentMana.ToString() + "/" + MaxMana.ToString() + "  Mana";
         HealthText.text = CurrentHealth.ToString() + "/" + MaxHealth.ToString() + " Health";
+        Count.text = EnemyCount.ToString() + "/" + MaxCount.ToString() + " Enemies";
     }
 
     // Update is called once per frame
     void Update()
     {
-        getinput();
-        Move();
-        Look();
+        if (died || Endgame)
+        {
+            return;
+        }
+        else
+        {
+            getinput();
+            Move();
+            Look();
+        }
     }
 
     void getinput()
     {
-        //x local right and left 
-        //y local up and down
-        //z local forward and back
-        inputVector.x = Input.GetAxis("Horizontal");
-        inputVector.z = Input.GetAxis("Vertical");
-        aimVector.x = Input.GetAxis("Mouse X");
-        aimVector.y = Input.GetAxis("Mouse Y");
-        if (Input.GetButtonDown("Fire1") && !Casting)
-        {
-            Shoot();
-        }
+        
+            //x local right and left 
+            //y local up and down
+            //z local forward and back
+            inputVector.x = Input.GetAxis("Horizontal");
+            inputVector.z = Input.GetAxis("Vertical");
+            aimVector.x = Input.GetAxis("Mouse X");
+            aimVector.y = Input.GetAxis("Mouse Y");
+            if (Input.GetButtonDown("Fire1") && !Casting)
+            {
+                Shoot();
+            }
+        
     }
 
 
@@ -134,11 +156,49 @@ public class PlayerController : MonoBehaviour
         HealthText.text = CurrentHealth.ToString() + "/" + MaxHealth.ToString() + " Health";
         if (CurrentHealth <= 0)
         {
-            print("You dead");
+            die();
         }
     }
 
-   
+   void die()
+    {
+        died = true;
+        endLevel();
+    }
+
+    void clearControl()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        StopAllCoroutines();
+        Destroy(GetComponent<CapsuleCollider>());
+    }
+
+   public void endLevel()
+    {
+        if (died)
+        {
+            clearControl();
+            InGame.SetActive(false);
+            DiedGui.SetActive(true);
+        }
+        else
+        {
+            Endgame = true;
+            clearControl();
+            InGame.SetActive(false);
+            WinGui.SetActive(true);
+        }
+    }
+
+    public void Enemy()
+    {
+        EnemyCount = EnemyCount - 1;
+        Count.text = EnemyCount.ToString() + "/" + MaxCount.ToString() + " Enemies";
+        if (EnemyCount <= 0)
+        {
+            endLevel();
+        }
+    }
 
     IEnumerator FireRoute()
     {
