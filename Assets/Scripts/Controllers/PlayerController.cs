@@ -55,8 +55,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("EnemyCount")]
     public Text Count;
-    public int MaxCount = 1;
-    public int EnemyCount = 1;
+    public int MaxCount = 5;
+    public int EnemyCount = 5;
 
     // Start is called before the first frame update
     void Start()

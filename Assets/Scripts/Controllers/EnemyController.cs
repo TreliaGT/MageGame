@@ -21,31 +21,41 @@ public class EnemyController : MonoBehaviour
 
     [Header("EnemyCount")]
     public GameObject objectToAccess;
+
+    [Header("animation")]
+    Animator Animator;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Target = PlayerManger.instance.Player.transform;
-     
+        Animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
+    [System.Obsolete]
     void Update()
     {
         float distance = Vector3.Distance(Target.position, transform.position);
         if (distance <= lookradar)
         {
             agent.SetDestination(Target.position);
-
-            if (distance <= agent.stoppingDistance)
+            Animator.SetBool("walking", true);
+            if (distance <= agent.stoppingDistance + 0.5)
             {
                 FaceTarget();
                 if (!Damage)
                 {
+                    Animator.SetTrigger("attack");
                     Target.GetComponent<PlayerController>().TakeDamage();
                     StartCoroutine(DamageRoutine());
                 }
             }
+
+        }
+        else
+        {
+            Animator.SetBool("walking", false);
         }
     }
 
@@ -67,6 +77,10 @@ public class EnemyController : MonoBehaviour
             Instantiate(DeathEffect, Tip.position, Quaternion.identity);
             Destroy(gameObject);
 
+        }
+        else
+        {
+            Instantiate(DeathEffect, Tip.position, Quaternion.identity);
         }
     }
 
