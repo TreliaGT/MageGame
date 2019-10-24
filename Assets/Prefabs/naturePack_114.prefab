@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 120840468}
   - component: {fileID: 120840470}
   - component: {fileID: 120840469}
+  - component: {fileID: 3355259575021651649}
   m_Layer: 0
   m_Name: Mesh1_Tree_Model
   m_TagString: Untagged
@@ -78,6 +79,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &3355259575021651649
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120840467}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 1b572087ee0c4574895cb6ce03d20a06, type: 3}
 --- !u!1 &1220165059
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +102,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 924222291}
-  - component: {fileID: 3050541881297965858}
   m_Layer: 0
   m_Name: naturePack_114
   m_TagString: Untagged
@@ -110,16 +124,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3050541881297965858
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1220165059}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.6695118, y: 2.4917915, z: 1.8981647}
-  m_Center: {x: -0.6652441, y: 0.75410426, z: -0.44908237}

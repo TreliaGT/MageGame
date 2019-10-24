@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37312, g: 0.38074034, b: 0.35872734, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySilder: {fileID: 342207088}
-  MyText: {fileID: 58686207}
+  MyText: {fileID: 749117983}
   multipler: 100
 --- !u!1 &779465838
 GameObject:
@@ -2632,7 +2632,7 @@ GameObject:
   - component: {fileID: 1518196880}
   - component: {fileID: 1518196882}
   m_Layer: 5
-  m_Name: VolumnValueTxt
+  m_Name: VolumeValueTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2714,7 +2714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySilder: {fileID: 38842761}
-  MyText: {fileID: 2051079301}
+  MyText: {fileID: 1518196880}
   multipler: 100
 --- !u!1 &1574517999
 GameObject:
@@ -3766,7 +3766,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Volumn
+  m_Text: 'Volume
+
+'
 --- !u!222 &2051079302
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3876,7 +3878,7 @@ RectTransform:
   m_GameObject: {fileID: 2107507116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1673504, y: 1.3383, z: 1}
+  m_LocalScale: {x: 1.3456048, y: 1.469052, z: 1}
   m_Children: []
   m_Father: {fileID: 656309407}
   m_RootOrder: 0

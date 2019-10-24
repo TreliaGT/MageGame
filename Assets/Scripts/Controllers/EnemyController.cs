@@ -25,14 +25,13 @@ public class EnemyController : MonoBehaviour
     [Header("animation")]
     Animator Animator;
     AudioSource orcAudio;
-    public GameObject hurtaudio;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         Target = PlayerManger.instance.Player.transform;
         Animator = GetComponent<Animator>();
-        orcAudio = hurtaudio.GetComponent<AudioSource>();
+        orcAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
