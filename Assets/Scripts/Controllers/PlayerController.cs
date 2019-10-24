@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public GameObject CastEffectPrefab;
     public GameObject CastLinePrefab;
     public GameObject Wand;
-
+    AudioSource shoot;
 
     public int MaxMana = 20;
     public int CurrentMana = 20;
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public GameObject DiedGui;
     public GameObject WinGui;
     public GameObject InGame;
+    AudioSource HurtAudio; 
 
     [Header("EnemyCount")]
     public Text Count;
@@ -63,6 +64,8 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        HurtAudio = GetComponent<AudioSource>();
+        shoot = Wand.GetComponent<AudioSource>();
         CurrentMana = MaxMana;
         ManaText.text = CurrentMana.ToString() + "/" + MaxMana.ToString() + "  Mana";
         HealthText.text = CurrentHealth.ToString() + "/" + MaxHealth.ToString() + " Health";
@@ -129,6 +132,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             CurrentMana -= 1;
+            shoot.Play();
             ManaText.text = CurrentMana.ToString() + "/" + MaxMana.ToString() + "  Mana";
             Instantiate(CastLinePrefab, Tip.position, Quaternion.identity, Tip).transform.forward = Tip.forward;
             RaycastHit hit;
@@ -152,6 +156,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage()
     {
         float Ran = UnityEngine.Random.Range(MinDamage, MaxDamage);
+        HurtAudio.Play();
         CurrentHealth = CurrentHealth - (int)Math.Round(Ran);
         HealthText.text = CurrentHealth.ToString() + "/" + MaxHealth.ToString() + " Health";
         if (CurrentHealth <= 0)
