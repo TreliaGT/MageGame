@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272e2f52573a02d44adaa4cf5256468c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookradar: 10
+  lookradar: 18
   DamageRate: 0.25
   MaxHealth: 3
   health: 3
@@ -206,7 +206,6 @@ MonoBehaviour:
     type: 3}
   Tip: {fileID: 5513932164782809079}
   objectToAccess: {fileID: 0}
-  hurtaudio: {fileID: 0}
 --- !u!95 &5513932164782809078
 Animator:
   serializedVersion: 3
